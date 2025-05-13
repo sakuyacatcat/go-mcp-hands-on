@@ -10,6 +10,8 @@ func New() *server.MCPServer {
 	// Add tool here
 	// name: "caesar_rotate"
 	// description: "Rotate a string by a given number of positions. It is used to encrypt or decrypt text of caesar Cipher."
+
+	// register a handler into the tool
 	return s
 }
 
