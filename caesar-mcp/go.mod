@@ -1,4 +1,4 @@
-module github.com/syumai/go-mcp-hands-on/caesar-mcp
+module github.com/tenkoh/go-mcp-hands-on/caesar-mcp
 
 go 1.24.1
 

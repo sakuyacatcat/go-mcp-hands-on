@@ -1,4 +1,4 @@
-module github.com/syumai/go-mcp-hands-on/examples/hello
+module github.com/tenkoh/go-mcp-hands-on/examples/hello
 
 go 1.24.1
 
