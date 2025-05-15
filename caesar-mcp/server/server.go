@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
@@ -15,6 +16,9 @@ func New() *server.MCPServer {
 	// Add tool here
 	// name: "caesar_rotate"
 	// description: "Rotate a string by a given number of positions. It is used to encrypt or decrypt text of caesar Cipher."
+
+	// HINT: use mcp.WithString and mcp.WithNumber to define the parameters.
+	// HINT: use mcp.DefaultNumber to set the default value of the number parameter.
 
 	// parameters:
 	// * text: 文字列
@@ -30,8 +34,11 @@ func New() *server.MCPServer {
 
 func rotateHandler(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 	// TODO: implement
+	// HINT: use request.Params.Arguments to get the parameters. then, use type assertion to convert them to the correct type like `.(string)`.
+	// HINT: "shift" is a number, so use `.(float64)` to convert it.
+
 	// HINT: use caesar.RotN
 
-	// TODO: return the result. the below code is just a placeholder.
-	return nil, nil
+	// TODO: input the result into `fmt.Sprint()`
+	return mcp.NewToolResultText(fmt.Sprint()), nil
 }
