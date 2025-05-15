@@ -16,6 +16,14 @@ func New() *server.MCPServer {
 	// name: "caesar_rotate"
 	// description: "Rotate a string by a given number of positions. It is used to encrypt or decrypt text of caesar Cipher."
 
+	// parameters:
+	// * text: 文字列
+	// 	- 必須
+	// 	- 説明: "Text to rotate"
+	// * shift: 数値
+	// 	- デフォルト値: 13
+	// 	- 説明: "Number of positions to rotate"
+
 	// register a handler into the tool
 	return s
 }
