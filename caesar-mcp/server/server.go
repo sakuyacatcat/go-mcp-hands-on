@@ -1,6 +1,11 @@
 package server
 
-import "github.com/mark3labs/mcp-go/server"
+import (
+	"context"
+
+	"github.com/mark3labs/mcp-go/mcp"
+	"github.com/mark3labs/mcp-go/server"
+)
 
 func New() *server.MCPServer {
 	s := server.NewMCPServer(
@@ -15,6 +20,10 @@ func New() *server.MCPServer {
 	return s
 }
 
-func rotateHandler() {
+func rotateHandler(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 	// TODO: implement
+	// HINT: use caesar.RotN
+
+	// TODO: return the result. the below code is just a placeholder.
+	return nil, nil
 }
