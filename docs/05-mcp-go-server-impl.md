@@ -97,7 +97,7 @@ VS Code以外をご利用の方は、フルパスをご利用ください。
     "args": [
       "run",
       "-C",
-      "${userHome}/go/src/github.com/tenkoh/go-mcp-hands-on/caesar-mcp",
+      "${workspaceFolder}/caesar-mcp",
       "./"
     ]
   }
