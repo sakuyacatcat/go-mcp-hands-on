@@ -6,6 +6,7 @@ import (
 
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
+	"github.com/tenkoh/go-mcp-hands-on/caesar-mcp/caesar"
 )
 
 func New() *server.MCPServer {
@@ -13,32 +14,38 @@ func New() *server.MCPServer {
 		"caesar Cipher",
 		"1.0.0",
 	)
-	// Add tool here
-	// name: "caesar_rotate"
-	// description: "Rotate a string by a given number of positions. It is used to encrypt or decrypt text of caesar Cipher."
 
-	// HINT: use mcp.WithString and mcp.WithNumber to define the parameters.
-	// HINT: use mcp.DefaultNumber to set the default value of the number parameter.
+	tool := mcp.NewTool("caesar_rotate",
+		mcp.WithDescription("Rotate a string by a given number of positions. It is used to encrypt or decrypt text of caesar Cipher."),
+		mcp.WithString("text",
+			mcp.Description("Text to rotate"),
+			mcp.Required(),
+		),
+		mcp.WithNumber("shift",
+			mcp.Description("Number of positions to rotate"),
+			mcp.DefaultNumber(13),
+		),
+	)
 
-	// parameters:
-	// * text: 文字列
-	// 	- 必須
-	// 	- 説明: "Text to rotate"
-	// * shift: 数値
-	// 	- デフォルト値: 13
-	// 	- 説明: "Number of positions to rotate"
-
-	// register a handler into the tool
+	s.AddTool(tool, rotateHandler)
 	return s
 }
 
 func rotateHandler(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
-	// TODO: implement
-	// HINT: use request.Params.Arguments to get the parameters. then, use type assertion to convert them to the correct type like `.(string)`.
-	// HINT: "shift" is a number, so use `.(float64)` to convert it.
+	text, ok := request.Params.Arguments["text"].(string)
+	if !ok {
+		return nil, fmt.Errorf("text must be a string")
+	}
 
-	// HINT: use caesar.RotN
+	var shift int = 13
+	if s, ok := request.Params.Arguments["shift"]; ok {
+		if f, ok := s.(float64); ok {
+			shift = int(f)
+		} else {
+			return nil, fmt.Errorf("shift must be a number")
+		}
+	}
 
-	// TODO: input the result into `fmt.Sprint()`
-	return mcp.NewToolResultText(fmt.Sprint()), nil
+	result := caesar.RotN(text, shift)
+	return mcp.NewToolResultText(fmt.Sprint(result)), nil
 }

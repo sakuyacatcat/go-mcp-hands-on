@@ -26,9 +26,12 @@ func TestTools(t *testing.T) {
 			},
 			want: "defabc",
 		},
-		// "default value of shift is 13": {
-		// TODO: implement
-		// },
+		"default value of shift is 13": {
+			args: map[string]any{
+				"text": "abcxyz",
+			},
+			want: "nopklm",
+		},
 	}
 
 	// MCPクライアントを起動する
